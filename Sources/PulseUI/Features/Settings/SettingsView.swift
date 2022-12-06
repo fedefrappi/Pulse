@@ -42,9 +42,6 @@ public struct SettingsView: View {
                     RemoteLoggerSettingsView(viewModel: .shared)
                 }
             }
-#if os(iOS)
-            sectionSponsor
-#endif
         }
         .backport.navigationTitle("Settings")
 #if os(iOS)
@@ -64,19 +61,6 @@ public struct SettingsView: View {
                     Text("Store Info")
                 }
             }
-#if os(iOS)
-            if !viewModel.isArchive {
-                Button(action: { isDocumentBrowserPresented = true }) {
-                    HStack {
-                        Image(systemName: "doc")
-                        Text("Browse Stores")
-                    }
-                }
-                .fullScreenCover(isPresented: $isDocumentBrowserPresented) {
-                    DocumentBrowser()
-                }
-            }
-#endif
         }
     }
 
