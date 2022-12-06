@@ -49,14 +49,6 @@ private struct Contents: View {
     @ViewBuilder
     private var form: some View {
         Form {
-#if !os(macOS) && !targetEnvironment(macCatalyst) && swift(>=5.7)
-            if #available(iOS 16.0, tvOS 16.0, macOS 13.0, watchOS 9.0, *), let info = viewModel.info {
-                LoggerStoreSizeChart(info: info, sizeLimit: viewModel.storeSizeLimit)
-#if os(macOS)
-                    .padding(.bottom, 16)
-#endif
-            }
-#endif
             ForEach(viewModel.sections, id: \.title) { section in
                 Section(header: Text(section.title)) {
                     ForEach(section.items.enumerated().map(KeyValueRow.init)) { item in
